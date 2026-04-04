@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heroic Stoic — The Daily Practice of Stoic Wisdom</title>
+    <meta name="description" content="Ancient philosophy. Modern life. One practice at a time. The Stoic Compass podcast, Pay Attention by C. Trebue, and the Daily Practice newsletter.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red:       #EF2D2D;
+            --deep-red:  #C62828;
+            --dark-red:  #9a1f1f;
+            --navy:      #1A2353;
+            --navy-dark: #0d1433;
+            --off-white: #FAF9F6;
+            --white:     #FFFFFF;
+            --text-muted: #5a6278;
+            --text-faint: #8a8fa8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--navy);
+            background: var(--off-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: var(--white);
+            border-bottom: 1px solid rgba(26,35,83,0.09);
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+            box-shadow: 0 1px 16px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+        }
+        .nav-wordmark {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            color: var(--navy);
+            line-height: 1.25;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.18s;
+        }
+        .nav-links a:hover { color: var(--red); }
+
+        .btn-nav {
+            background: var(--red);
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 4px;
+            font-weight: 600 !important;
+            letter-spacing: 0.03em !important;
+            transition: background 0.18s !important;
+        }
+        .btn-nav:hover { background: var(--deep-red) !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all 0.25s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            background: var(--red);
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 7rem;
+        }
+
+        /* Compass-rose SVG decorations */
+        .hero-decor {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-teachers {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.24em;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.1s ease forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7.5vw, 6.2rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.4rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.25s ease forwards;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.82);
+            letter-spacing: 0.02em;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.4s ease forwards;
+        }
+
+        .hero-pills {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.55s ease forwards;
+        }
+
+        .hero-pill {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--white);
+            padding: 0.65rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            backdrop-filter: blur(6px);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.18s, border-color 0.18s;
+        }
+        .hero-pill:hover {
+            background: rgba(255,255,255,0.22);
+            border-color: rgba(255,255,255,0.45);
+        }
+
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeUp 0.8s 0.9s ease forwards;
+        }
+        .hero-scroll-hint span {
+            display: block;
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+            margin: 0 auto;
+        }
+
+        /* ─── SECTION SHARED ─── */
+        .section {
+            padding: 7.5rem 2rem;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.9rem;
+        }
+        .section-h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.15;
+            margin-bottom: 0.75rem;
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1.25rem;
+            line-height: 1.65;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 1.75rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: all 0.18s;
+            cursor: pointer;
+        }
+        .btn-red {
+            background: var(--red);
+            color: var(--white);
+            border: 2px solid var(--red);
+        }
+        .btn-red:hover { background: var(--deep-red); border-color: var(--deep-red); }
+
+        .btn-outline-navy {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+        .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* ─── PODCAST SECTION ─── */
+        .podcast-section { background: var(--white); }
+
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .podcast-body {
+            font-size: 1.05rem;
+            line-height: 1.78;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Platform badges */
+        .platform-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.75rem;
+        }
+        .platform-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-right: 0.25rem;
+        }
+        .platform-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--navy);
+            background: rgba(26,35,83,0.05);
+            border: 1px solid rgba(26,35,83,0.09);
+            border-radius: 100px;
+            padding: 0.3rem 0.75rem;
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .platform-badge:hover {
+            background: rgba(26,35,83,0.1);
+            border-color: rgba(26,35,83,0.18);
+        }
+
+        /* Buzzsprout embed wrapper */
+        .buzzsprout-embed {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* ─── DIVIDER ─── */
+        .divider {
+            max-width: 1100px;
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(26,35,83,0.1), transparent);
+        }
+
+        /* ─── BOOK SECTION ─── */
+        .book-section { background: var(--off-white); }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        /* Book cover image */
+        .book-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 900px;
+        }
+        .book-cover-img {
+            width: 230px;
+            display: block;
+            border-radius: 2px 5px 5px 2px;
+            transform: rotateY(-14deg);
+            box-shadow:
+                -8px 0 16px rgba(0,0,0,0.25),
+                -18px 14px 50px rgba(0,0,0,0.3),
+                4px 0 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .book-mockup:hover .book-cover-img {
+            transform: rotateY(-6deg);
+            box-shadow:
+                -4px 0 10px rgba(0,0,0,0.2),
+                -22px 18px 60px rgba(0,0,0,0.28),
+                4px 0 8px rgba(0,0,0,0.1);
+        }
+
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-style: italic;
+            color: var(--navy);
+            border-left: 3px solid var(--red);
+            padding: 0.25rem 0 0.25rem 1.5rem;
+            margin: 1.75rem 0;
+            line-height: 1.5;
+        }
+        .author-byline {
+            font-size: 0.95rem;
+            color: var(--text-faint);
+            font-style: italic;
+            margin-bottom: 0.25rem;
+        }
+        .lessons-note {
+            font-size: 0.8rem;
+            color: var(--text-faint);
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        /* ─── TEACHERS STRIP ─── */
+        .teachers-strip {
+            background: var(--navy);
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+        .teachers-strip-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .teachers-row {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        .teacher-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .teacher-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: white;
+        }
+        .teacher-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+        }
+        .teacher-role {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ─── NEWSLETTER SECTION ─── */
+        .newsletter-section {
+            background: var(--red);
+            padding: 7.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .newsletter-inner {
+            max-width: 580px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .newsletter-section .section-label {
+            color: rgba(255,255,255,0.5);
+        }
+        .newsletter-section .section-h2 {
+            color: var(--white);
+            font-size: clamp(2.2rem, 5vw, 3rem);
+        }
+        .newsletter-desc {
+            color: rgba(255,255,255,0.82);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .email-form {
+            display: flex;
+            max-width: 460px;
+            margin: 0 auto 1rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+        }
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.2rem;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            outline: none;
+            color: var(--navy);
+            min-width: 0;
+        }
+        .email-submit {
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            padding: 1rem 1.4rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.18s;
+            letter-spacing: 0.03em;
+        }
+        .email-submit:hover { background: var(--navy-dark); }
+        .newsletter-note {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.45);
+            margin-top: 1rem;
+        }
+        .substack-embed-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        /* Background rings for newsletter */
+        .nl-rings {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--navy-dark);
+            padding: 5rem 2rem 2.5rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto 3.5rem;
+        }
+        .footer-brand-tagline {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.75rem;
+            line-height: 1.65;
+        }
+        .footer-col-head {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 1.1rem;
+        }
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            margin-bottom: 0.65rem;
+            transition: color 0.18s;
+            line-height: 1.4;
+        }
+        .footer-col a:hover { color: var(--white); }
+        .footer-col a.dim { opacity: 0.35; cursor: default; pointer-events: none; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-copy {
+            font-size: 0.77rem;
+            color: rgba(255,255,255,0.25);
+        }
+        .footer-teachers {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 0.1em;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-ring {
+            0%   { transform: scale(0.95); opacity: 0.06; }
+            50%  { transform: scale(1.02); opacity: 0.1; }
+            100% { transform: scale(0.95); opacity: 0.06; }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                position: fixed;
+                top: 68px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--white);
+                padding: 1.5rem 2rem;
+                gap: 1.25rem;
+                border-bottom: 1px solid rgba(26,35,83,0.09);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+            }
+            .hamburger { display: flex; }
+
+            .podcast-grid,
+            .book-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .book-cover-img { transform: rotateY(0); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+            .teachers-row { gap: 2.5rem; }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 540px) {
+            .section { padding: 5rem 1.5rem; }
+            nav { padding: 0 1.25rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .email-form { flex-direction: column; border-radius: 6px; }
+            .email-input { border-radius: 6px 6px 0 0; }
+            .email-submit { border-radius: 0 0 6px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav>
+    <a href="#" class="nav-logo">
+        <!-- Stylized S mark -->
+        <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="21" cy="12" rx="13" ry="8" fill="#C62828" transform="rotate(-22 21 12)"/>
+            <ellipse cx="13" cy="30" rx="13" ry="8" fill="#EF5350" transform="rotate(-22 13 30)"/>
+            <ellipse cx="17" cy="21" rx="8" ry="5.5" fill="#C62828" transform="rotate(-22 17 21)"/>
+        </svg>
+        <div class="nav-wordmark">THE HEROIC<br>STOIC</div>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#listen">Listen</a>
+        <a href="#books">Books</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#newsletter" class="btn-nav">Start Your Practice</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('#navLinks').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+    <!-- Compass-rose decoration -->
+    <div class="hero-decor" aria-hidden="true">
+        <svg style="position:absolute;top:-60px;right:-80px;opacity:0.07" width="640" height="640" viewBox="0 0 640 640">
+            <circle cx="320" cy="320" r="310" stroke="white" stroke-width="0.8" fill="none"/>
+            <circle cx="320" cy="320" r="240" stroke="white" stroke-width="0.8" fill="none"/>
+            <circle cx="320" cy="320" r="170" stroke="white" stroke-width="0.8" fill="none"/>
+            <circle cx="320" cy="320" r="100" stroke="white" stroke-width="0.8" fill="none"/>
+            <line x1="320" y1="10" x2="320" y2="630" stroke="white" stroke-width="0.5"/>
+            <line x1="10" y1="320" x2="630" y2="320" stroke="white" stroke-width="0.5"/>
+            <line x1="103" y1="103" x2="537" y2="537" stroke="white" stroke-width="0.4"/>
+            <line x1="537" y1="103" x2="103" y2="537" stroke="white" stroke-width="0.4"/>
+            <!-- Cardinal points -->
+            <polygon points="320,10 313,30 327,30" fill="white" opacity="0.5"/>
+            <polygon points="320,630 313,610 327,610" fill="white" opacity="0.5"/>
+            <polygon points="10,320 30,313 30,327" fill="white" opacity="0.5"/>
+            <polygon points="630,320 610,313 610,327" fill="white" opacity="0.5"/>
+        </svg>
+        <svg style="position:absolute;bottom:-140px;left:-100px;opacity:0.05" width="480" height="480" viewBox="0 0 480 480">
+            <circle cx="240" cy="240" r="230" stroke="white" stroke-width="0.8" fill="none"/>
+            <circle cx="240" cy="240" r="165" stroke="white" stroke-width="0.8" fill="none"/>
+        </svg>
+        <!-- Accent dots -->
+        <div style="position:absolute;top:18%;left:7%;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.18)"></div>
+        <div style="position:absolute;top:72%;left:14%;width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.12)"></div>
+        <div style="position:absolute;top:28%;right:12%;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.14)"></div>
+        <div style="position:absolute;top:60%;right:8%;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1)"></div>
+    </div>
+
+    <div class="hero-content">
+        <p class="hero-teachers">Epictetus &nbsp;·&nbsp; Carl Jung &nbsp;·&nbsp; Laozi</p>
+        <h1>The Daily Practice<br>of Stoic Wisdom</h1>
+        <p class="hero-sub">Ancient philosophy. Modern life. One practice at a time.</p>
+        <div class="hero-pills">
+            <a href="#listen" class="hero-pill">🎙️ The Podcast</a>
+            <a href="#books" class="hero-pill">📖 The Book</a>
+            <a href="#newsletter" class="hero-pill">✉️ The Newsletter</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
+</section>
+
+
+<!-- ═══════════ PODCAST SECTION ═══════════ -->
+<section id="listen" class="section podcast-section">
+    <div class="section-inner">
+        <div class="podcast-grid">
+            <!-- Text -->
+            <div>
+                <span class="section-label">The Podcast</span>
+                <h2 class="section-h2">The Stoic Compass</h2>
+                <p class="section-sub">Three of history's greatest minds. One question. One practice.</p>
+                <p class="podcast-body">
+                    Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. They disagree — genuinely, sometimes sharply. One of them delivers a lesson. All of them leave you with one concrete thing to do before tomorrow.
+                </p>
+                <p class="podcast-body" style="margin-top:0.75rem">
+                    Not a concept to think about. Something you actually do today.
+                </p>
+                <div class="btn-group">
+                    <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener" class="btn btn-red">Listen on Buzzsprout</a>
+                    <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener" class="btn btn-outline-navy">Subscribe Free</a>
+                </div>
+                <div class="platform-row">
+                    <span class="platform-label">Also on</span>
+                    <a href="https://podcasts.apple.com/search?term=the+stoic+compass" target="_blank" rel="noopener" class="platform-badge">Apple Podcasts</a>
+                    <a href="https://open.spotify.com/search/the%20stoic%20compass" target="_blank" rel="noopener" class="platform-badge">Spotify</a>
+                    <a href="https://music.amazon.com/search/the+stoic+compass" target="_blank" rel="noopener" class="platform-badge">Amazon Music</a>
+                    <a href="https://www.iheart.com/search/?keywords=the+stoic+compass" target="_blank" rel="noopener" class="platform-badge">iHeart</a>
+                </div>
+            </div>
+
+            <!-- Buzzsprout Large Player -->
+            <div class="buzzsprout-embed">
+                <div id='buzzsprout-large-player'></div>
+                <script type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2526323.js?container_id=buzzsprout-large-player&player=large'></script>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════ TEACHERS STRIP ═══════════ -->
+<div class="teachers-strip">
+    <span class="teachers-strip-label">The Three Teachers</span>
+    <div class="teachers-row">
+        <div class="teacher-item">
+            <div class="teacher-circle" style="background:#C62828">E</div>
+            <div class="teacher-name">Epictetus</div>
+            <div class="teacher-role">The Drill Sergeant</div>
+        </div>
+        <div class="teacher-item">
+            <div class="teacher-circle" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)">CJ</div>
+            <div class="teacher-name">Carl Jung</div>
+            <div class="teacher-role">The Mythologist</div>
+        </div>
+        <div class="teacher-item">
+            <div class="teacher-circle" style="background:#3d6b38">L</div>
+            <div class="teacher-name">Laozi</div>
+            <div class="teacher-role">The Riddler</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ═══════════ BOOK SECTION ═══════════ -->
+<section id="books" class="section book-section">
+    <div class="section-inner">
+        <div class="book-grid">
+            <!-- Book Cover Image -->
+            <div class="book-mockup">
+                <img src="payAttentionCover.png"
+                     alt="Pay Attention by C. Trebue — The Practice of Seeing Clearly"
+                     class="book-cover-img">
+            </div>
+
+            <!-- Book Text -->
+            <div>
+                <span class="section-label">The Book</span>
+                <h2 class="section-h2">Pay Attention</h2>
+                <p class="author-byline">by C. Trebue</p>
+                <p class="section-sub">
+                    Twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today.
+                </p>
+                <blockquote class="pull-quote">
+                    "You're not distracted.<br>You're just not here."
+                </blockquote>
+                <div class="btn-group">
+                    <a href="https://www.amazon.com/dp/B0GR8WLMPC" target="_blank" rel="noopener" class="btn btn-red">Get the eBook</a>
+                    <a href="https://www.amazon.com/dp/B0GVV46SWF" target="_blank" rel="noopener" class="btn btn-outline-navy">Get the Paperback</a>
+                </div>
+                <p class="lessons-note">Available on Amazon &nbsp;·&nbsp; Twelve lessons &nbsp;·&nbsp; The same three teachers from the podcast</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════ NEWSLETTER SECTION ═══════════ -->
+<section id="newsletter" class="newsletter-section">
+    <!-- Background rings -->
+    <div class="nl-rings" aria-hidden="true">
+        <svg width="700" height="700" viewBox="0 0 700 700" style="opacity:0.06">
+            <circle cx="350" cy="350" r="340" stroke="white" stroke-width="1" fill="none"/>
+            <circle cx="350" cy="350" r="260" stroke="white" stroke-width="1" fill="none"/>
+            <circle cx="350" cy="350" r="180" stroke="white" stroke-width="1" fill="none"/>
+        </svg>
+    </div>
+    <div class="newsletter-inner">
+        <span class="section-label">The Newsletter</span>
+        <h2 class="section-h2">The Daily Practice</h2>
+        <p class="newsletter-desc">One Stoic insight. One practice. In your inbox every day.</p>
+
+        <div class="substack-embed-wrap">
+            <iframe src="https://thedailypractice33.substack.com/embed"
+                    width="480" height="320"
+                    style="border:1px solid #EEE; background:white; border-radius:10px; display:block; max-width:100%;"
+                    frameborder="0" scrolling="no"></iframe>
+        </div>
+        <p class="newsletter-note">Free to subscribe &nbsp;·&nbsp; One practice, every day.</p>
+    </div>
+</section>
+
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+    <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+            <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+                <svg width="28" height="36" viewBox="0 0 28 36" fill="none" aria-hidden="true">
+                    <ellipse cx="18" cy="10" rx="10" ry="6.5" fill="rgba(255,255,255,0.8)" transform="rotate(-22 18 10)"/>
+                    <ellipse cx="10" cy="26" rx="10" ry="6.5" fill="rgba(255,255,255,0.45)" transform="rotate(-22 10 26)"/>
+                    <ellipse cx="14" cy="18" rx="6.5" ry="4.5" fill="rgba(255,255,255,0.65)" transform="rotate(-22 14 18)"/>
+                </svg>
+                <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.14em;color:rgba(255,255,255,0.8);line-height:1.3;text-transform:uppercase">THE HEROIC<br>STOIC</span>
+            </a>
+            <p class="footer-brand-tagline">Ancient wisdom. Daily practice.</p>
+        </div>
+
+        <!-- Listen -->
+        <div class="footer-col">
+            <div class="footer-col-head">Listen</div>
+            <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener">The Stoic Compass</a>
+            <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener">All Episodes</a>
+            <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener">Subscribe Free</a>
+        </div>
+
+        <!-- Read -->
+        <div class="footer-col">
+            <div class="footer-col-head">Read</div>
+            <a href="https://www.amazon.com/dp/B0GR8WLMPC" target="_blank" rel="noopener">Pay Attention — eBook</a>
+            <a href="https://www.amazon.com/dp/B0GVV46SWF" target="_blank" rel="noopener">Pay Attention — Paperback</a>
+        </div>
+
+        <!-- Connect -->
+        <div class="footer-col">
+            <div class="footer-col-head">Connect</div>
+            <a href="https://thedailypractice33.substack.com" target="_blank" rel="noopener">The Daily Practice (Substack)</a>
+            <a href="#newsletter">Subscribe Free</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2025 The Heroic Stoic. All Rights Reserved.</p>
+        <p class="footer-teachers">Epictetus &nbsp;·&nbsp; Carl Jung &nbsp;·&nbsp; Laozi</p>
+    </div>
+</footer>
+
+<script>
+    // Close mobile nav on link click
+    document.querySelectorAll('#navLinks a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
