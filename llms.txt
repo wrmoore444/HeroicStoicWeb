@@ -1,0 +1,32 @@
+# The Heroic Stoic
+
+> Ancient philosophy. Modern life. One practice at a time.
+
+The Heroic Stoic is a brand built around the daily practice of Stoic wisdom, anchored by three teachers: Epictetus, Carl Jung, and Laozi. The site is the hub for a podcast, a book, and a daily newsletter.
+
+## Pages
+
+- [Home](https://theheroicstoic.com/): The primary page — covers all three pillars of the brand
+
+## Content & Products
+
+### The Stoic Compass (Podcast)
+A philosophy podcast where Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. The three teachers disagree genuinely, sometimes sharply. One delivers a lesson. Every episode ends with one concrete practice the listener can do before tomorrow. Available free on Buzzsprout, Apple Podcasts, Spotify, Amazon Music, and iHeart Radio.
+
+- Buzzsprout: https://www.buzzsprout.com/2526323
+- RSS Feed: https://feeds.buzzsprout.com/2526323.rss
+
+### Pay Attention (Book)
+Written by C. Trebue. A short, practical book: twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach the reader to stop reacting and start noticing. Each lesson ends with one concrete practice.
+
+- eBook (Amazon): https://www.amazon.com/dp/B0GR8WLMPC
+- Paperback (Amazon): https://www.amazon.com/dp/B0GVV46SWF
+
+### The Daily Practice (Newsletter)
+A free daily Substack newsletter. One Stoic insight and one concrete practice delivered to subscribers every day.
+
+- Substack: https://thedailypractice33.substack.com
+
+## About
+
+The Heroic Stoic is authored by C. Trebue. The brand draws on Stoic philosophy (primarily Epictetus), Jungian psychology (Carl Jung), and Taoist philosophy (Laozi) to produce content focused on practical daily application rather than academic study.

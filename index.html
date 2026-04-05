@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Heroic Stoic — The Daily Practice of Stoic Wisdom</title>
     <meta name="description" content="Ancient philosophy. Modern life. One practice at a time. The Stoic Compass podcast, Pay Attention by C. Trebue, and the Daily Practice newsletter.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://theheroicstoic.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theheroicstoic.com/">
+    <meta property="og:site_name" content="The Heroic Stoic">
+    <meta property="og:title" content="The Heroic Stoic — The Daily Practice of Stoic Wisdom">
+    <meta property="og:description" content="Ancient philosophy. Modern life. One practice at a time. The Stoic Compass podcast, Pay Attention by C. Trebue, and the Daily Practice newsletter.">
+    <meta property="og:image" content="https://theheroicstoic.com/payAttentionCover.png">
+    <meta property="og:image:alt" content="Pay Attention by C. Trebue — book cover">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Heroic Stoic — The Daily Practice of Stoic Wisdom">
+    <meta name="twitter:description" content="Ancient philosophy. Modern life. One practice at a time. The Stoic Compass podcast, Pay Attention by C. Trebue, and the Daily Practice newsletter.">
+    <meta name="twitter:image" content="https://theheroicstoic.com/payAttentionCover.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -648,6 +667,109 @@
             .email-submit { border-radius: 0 0 6px 6px; }
         }
     </style>
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://theheroicstoic.com/#website",
+          "url": "https://theheroicstoic.com/",
+          "name": "The Heroic Stoic",
+          "description": "Ancient philosophy. Modern life. One practice at a time.",
+          "publisher": { "@id": "https://theheroicstoic.com/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://theheroicstoic.com/#organization",
+          "name": "The Heroic Stoic",
+          "url": "https://theheroicstoic.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://theheroicstoic.com/payAttentionCover.png"
+          },
+          "sameAs": [
+            "https://thedailypractice33.substack.com",
+            "https://www.buzzsprout.com/2526323"
+          ]
+        },
+        {
+          "@type": "PodcastSeries",
+          "@id": "https://theheroicstoic.com/#podcast",
+          "name": "The Stoic Compass",
+          "description": "Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. They disagree — genuinely, sometimes sharply. Each episode ends with one concrete practice you can do today.",
+          "url": "https://www.buzzsprout.com/2526323",
+          "webFeed": "https://feeds.buzzsprout.com/2526323.rss",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://theheroicstoic.com/#organization" }
+        },
+        {
+          "@type": "Book",
+          "@id": "https://theheroicstoic.com/#book",
+          "name": "Pay Attention",
+          "description": "Twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today.",
+          "author": {
+            "@type": "Person",
+            "name": "C. Trebue"
+          },
+          "url": "https://www.amazon.com/dp/B0GR8WLMPC",
+          "isbn": "B0GR8WLMPC",
+          "bookFormat": "https://schema.org/EBook",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://theheroicstoic.com/#organization" },
+          "image": "https://theheroicstoic.com/payAttentionCover.png"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://theheroicstoic.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is The Heroic Stoic?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Heroic Stoic is a brand built around the daily practice of Stoic wisdom. It includes The Stoic Compass podcast, the book Pay Attention by C. Trebue, and The Daily Practice — a free daily newsletter delivering one Stoic insight and one concrete practice every day."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is The Stoic Compass podcast?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Stoic Compass is a philosophy podcast where Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. The three teachers disagree genuinely and sometimes sharply. Every episode ends with one concrete practice the listener can do before tomorrow. It is free on Buzzsprout, Apple Podcasts, Spotify, Amazon Music, and iHeart."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the book Pay Attention by C. Trebue?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pay Attention is a short practical book of twelve lessons in the practice of seeing clearly. Written by C. Trebue, it draws on Epictetus, Carl Jung, and Laozi to teach the reader to stop reacting and start noticing. Each lesson ends with one concrete practice. Available on Amazon as an eBook and paperback."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is The Daily Practice newsletter?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Daily Practice is a free daily Substack newsletter from The Heroic Stoic. Each issue delivers one Stoic insight and one concrete practice directly to subscribers' inboxes. It is published on Substack at thedailypractice33.substack.com."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who are the three teachers on The Stoic Compass?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The three teachers are Epictetus (the Stoic philosopher, referred to as The Drill Sergeant), Carl Jung (the Swiss psychiatrist and mythologist), and Laozi (the ancient Chinese philosopher and author of the Tao Te Ching, referred to as The Riddler). Each brings a distinct perspective to every Stoic principle discussed."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
@@ -666,7 +788,8 @@
     <div class="nav-links" id="navLinks">
         <a href="#listen">Listen</a>
         <a href="#books">Books</a>
-        <a href="#newsletter">Newsletter</a>
+        <a href="#faq">FAQ</a>
+        <a href="#about">About</a>
         <a href="#newsletter" class="btn-nav">Start Your Practice</a>
     </div>
 
@@ -728,10 +851,10 @@
             <!-- Text -->
             <div>
                 <span class="section-label">The Podcast</span>
-                <h2 class="section-h2">The Stoic Compass</h2>
-                <p class="section-sub">Three of history's greatest minds. One question. One practice.</p>
+                <h2 class="section-h2">What is The Stoic Compass podcast?</h2>
+                <p class="section-sub">The Stoic Compass is a philosophy podcast where Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. They disagree — genuinely, sometimes sharply. Every episode ends with one concrete practice you can do before tomorrow. Free on all major platforms.</p>
                 <p class="podcast-body">
-                    Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. They disagree — genuinely, sometimes sharply. One of them delivers a lesson. All of them leave you with one concrete thing to do before tomorrow.
+                    Three of history's greatest minds. One question. One practice. Epictetus pushes hard. Jung digs deep. Laozi asks what happens if you stop pushing entirely. One of them delivers a lesson. All of them leave you with something to actually do today.
                 </p>
                 <p class="podcast-body" style="margin-top:0.75rem">
                     Not a concept to think about. Something you actually do today.
@@ -764,17 +887,17 @@
     <span class="teachers-strip-label">The Three Teachers</span>
     <div class="teachers-row">
         <div class="teacher-item">
-            <div class="teacher-circle" style="background:#C62828">E</div>
+            <img src="assets/portraits/epictetus.png" alt="Epictetus — Stoic philosopher" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;">
             <div class="teacher-name">Epictetus</div>
             <div class="teacher-role">The Drill Sergeant</div>
         </div>
         <div class="teacher-item">
-            <div class="teacher-circle" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)">CJ</div>
+            <img src="assets/portraits/carlJung.png" alt="Carl Jung — Swiss psychiatrist and mythologist" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;">
             <div class="teacher-name">Carl Jung</div>
             <div class="teacher-role">The Mythologist</div>
         </div>
         <div class="teacher-item">
-            <div class="teacher-circle" style="background:#3d6b38">L</div>
+            <img src="assets/portraits/laozi.png" alt="Laozi — ancient Chinese philosopher, author of the Tao Te Ching" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;">
             <div class="teacher-name">Laozi</div>
             <div class="teacher-role">The Riddler</div>
         </div>
@@ -796,10 +919,10 @@
             <!-- Book Text -->
             <div>
                 <span class="section-label">The Book</span>
-                <h2 class="section-h2">Pay Attention</h2>
+                <h2 class="section-h2">What is <em>Pay Attention</em> by C. Trebue?</h2>
                 <p class="author-byline">by C. Trebue</p>
                 <p class="section-sub">
-                    Twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today.
+                    <em>Pay Attention</em> is twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today. Available on Amazon as an eBook and paperback.
                 </p>
                 <blockquote class="pull-quote">
                     "You're not distracted.<br>You're just not here."
@@ -815,6 +938,64 @@
 </section>
 
 
+<!-- ═══════════ ABOUT THE AUTHOR ═══════════ -->
+<section id="about" class="section" style="background:var(--white);">
+    <div class="section-inner" style="max-width:720px;">
+        <span class="section-label">The Author</span>
+        <h2 class="section-h2" style="margin-bottom:1.5rem;">Who is C. Trebue?</h2>
+        <p class="podcast-body">
+            C. Trebue has spent a very long life being human, which is to say, making mistakes, course-correcting, and starting over more times than he'd like to count. He found his way to Epictetus, Jung, and Laozi not through a philosophy degree but through necessity. These weren't interesting thinkers. They were useful ones.
+        </p>
+        <p class="podcast-body" style="margin-top:0.85rem;">
+            After decades of work, relationships, missteps, and the occasional accidental wisdom, he arrived at a conclusion simple enough to fit in two words: Pay Attention. Not as a slogan. As the one practice that underlies everything else — every craft, every relationship, every attempt to become something better than you were yesterday.
+        </p>
+        <p class="podcast-body" style="margin-top:0.85rem;">
+            He hopes it finds the people who need it.
+        </p>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ FAQ SECTION ═══════════ -->
+<section id="faq" class="section" style="background:var(--off-white);">
+    <div class="section-inner" style="max-width:720px;">
+        <span class="section-label">Common Questions</span>
+        <h2 class="section-h2" style="margin-bottom:2.5rem;">Frequently Asked Questions</h2>
+
+        <div style="display:flex;flex-direction:column;gap:2rem;">
+
+            <div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">What is The Heroic Stoic?</h3>
+                <p class="podcast-body">The Heroic Stoic is a brand built around the daily practice of Stoic wisdom. It brings together The Stoic Compass podcast, the book <em>Pay Attention</em> by C. Trebue, and The Daily Practice — a free daily newsletter delivering one Stoic insight and one concrete practice every day.</p>
+            </div>
+
+            <div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Who are the three teachers on The Stoic Compass?</h3>
+                <p class="podcast-body">The three teachers are Epictetus (the Stoic philosopher, known here as The Drill Sergeant), Carl Jung (the Swiss psychiatrist and mythologist), and Laozi (the ancient Chinese philosopher and author of the Tao Te Ching, known as The Riddler). Each brings a sharply different perspective to every Stoic principle — and they genuinely disagree.</p>
+            </div>
+
+            <div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Do I need a background in philosophy to benefit from this?</h3>
+                <p class="podcast-body">No. The Stoic Compass podcast, the book, and the newsletter are all built for people who want practical tools — not academic theory. Each episode and each lesson ends with one concrete thing you can do today. No philosophy degree required. No meditation cushion either.</p>
+            </div>
+
+            <div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Is the podcast free?</h3>
+                <p class="podcast-body">Yes. The Stoic Compass is completely free to listen to on Buzzsprout, Apple Podcasts, Spotify, Amazon Music, and iHeart Radio. Subscribe on any platform to get new episodes automatically.</p>
+            </div>
+
+            <div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">What is the difference between the podcast and the book?</h3>
+                <p class="podcast-body">The Stoic Compass podcast delivers a new debate and practice every episode — it is an ongoing, evolving series. <em>Pay Attention</em> is a complete twelve-lesson course designed to be read in sequence, building one practice on top of the last. Both feature the same three teachers, but the book goes deeper on the foundational skills of attention and self-awareness.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ═══════════ NEWSLETTER SECTION ═══════════ -->
 <section id="newsletter" class="newsletter-section">
     <!-- Background rings -->
@@ -827,8 +1008,8 @@
     </div>
     <div class="newsletter-inner">
         <span class="section-label">The Newsletter</span>
-        <h2 class="section-h2">The Daily Practice</h2>
-        <p class="newsletter-desc">One Stoic insight. One practice. In your inbox every day.</p>
+        <h2 class="section-h2">What is The Daily Practice newsletter?</h2>
+        <p class="newsletter-desc">A free daily Substack newsletter. One Stoic insight and one concrete practice — in your inbox every day. No fluff. No philosophy degree required.</p>
 
         <div class="substack-embed-wrap">
             <iframe src="https://thedailypractice33.substack.com/embed"
@@ -877,11 +1058,13 @@
             <div class="footer-col-head">Connect</div>
             <a href="https://thedailypractice33.substack.com" target="_blank" rel="noopener">The Daily Practice (Substack)</a>
             <a href="#newsletter">Subscribe Free</a>
+            <a href="#about">About C. Trebue</a>
+            <a href="#faq">FAQ</a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <p class="footer-copy">© 2025 The Heroic Stoic. All Rights Reserved.</p>
+        <p class="footer-copy">© 2026 The Heroic Stoic. All Rights Reserved.</p>
         <p class="footer-teachers">Epictetus &nbsp;·&nbsp; Carl Jung &nbsp;·&nbsp; Laozi</p>
     </div>
 </footer>
