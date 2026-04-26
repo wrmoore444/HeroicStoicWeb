@@ -811,6 +811,38 @@
             color: var(--cream-muted);
         }
 
+        /* ─── HERO VIDEO CONTROLS ─── */
+        .hero-controls {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            z-index: 10;
+            display: flex;
+            gap: 0.6rem;
+            opacity: 0;
+            animation: fadeUp 0.8s 1.2s ease forwards;
+        }
+        .hero-ctrl-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(7,8,13,0.65);
+            border: 1px solid var(--gold-line);
+            color: var(--cream-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .hero-ctrl-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(7,8,13,0.88);
+        }
+
         /* ─── ANIMATIONS ─── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(22px); }
@@ -1039,6 +1071,31 @@
             <a href="#books" class="hero-pill">The Book</a>
             <a href="#newsletter" class="hero-pill">The Newsletter</a>
         </div>
+    </div>
+
+    <!-- Video controls: play/pause + sound toggle -->
+    <div class="hero-controls" id="heroControls">
+        <button class="hero-ctrl-btn" id="videoPlayBtn" aria-label="Pause video">
+            <svg class="icon-pause" width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="4.5" height="14" rx="1" fill="currentColor"/>
+                <rect x="7.5" y="0" width="4.5" height="14" rx="1" fill="currentColor"/>
+            </svg>
+            <svg class="icon-play" width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+                <path d="M1 1L11 7L1 13V1Z" fill="currentColor"/>
+            </svg>
+        </button>
+        <button class="hero-ctrl-btn" id="videoSoundBtn" aria-label="Unmute video">
+            <svg class="icon-muted" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4.5H3.8L7.5 1.5V12.5L3.8 9.5H1V4.5Z" fill="currentColor"/>
+                <line x1="10.5" y1="4.5" x2="14.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="14.5" y1="4.5" x2="10.5" y2="8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <svg class="icon-sound" width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+                <path d="M1 4.5H3.8L7.5 1.5V12.5L3.8 9.5H1V4.5Z" fill="currentColor"/>
+                <path d="M9.5 4C10.8 4.9 11.7 6 11.7 7C11.7 8 10.8 9.1 9.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                <path d="M11.2 2C13.4 3.3 15 5 15 7C15 9 13.4 10.7 11.2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+        </button>
     </div>
 
     <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
@@ -1273,11 +1330,46 @@
 </footer>
 
 <script>
+    // Mobile nav
     document.querySelectorAll('#navLinks a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('open');
         });
     });
+
+    // Hero video controls
+    const heroVideo = document.querySelector('.hero-video');
+    const playBtn   = document.getElementById('videoPlayBtn');
+    const soundBtn  = document.getElementById('videoSoundBtn');
+
+    if (heroVideo && playBtn && soundBtn) {
+        function syncPlayIcon() {
+            playBtn.querySelector('.icon-pause').style.display = heroVideo.paused ? 'none' : '';
+            playBtn.querySelector('.icon-play').style.display  = heroVideo.paused ? ''     : 'none';
+            playBtn.setAttribute('aria-label', heroVideo.paused ? 'Play video' : 'Pause video');
+        }
+        function syncSoundIcon() {
+            soundBtn.querySelector('.icon-muted').style.display = heroVideo.muted ? '' : 'none';
+            soundBtn.querySelector('.icon-sound').style.display = heroVideo.muted ? 'none' : '';
+            soundBtn.setAttribute('aria-label', heroVideo.muted ? 'Unmute video' : 'Mute video');
+        }
+
+        playBtn.addEventListener('click', () => {
+            heroVideo.paused ? heroVideo.play() : heroVideo.pause();
+        });
+
+        soundBtn.addEventListener('click', () => {
+            heroVideo.muted = !heroVideo.muted;
+            syncSoundIcon();
+        });
+
+        heroVideo.addEventListener('play',  syncPlayIcon);
+        heroVideo.addEventListener('pause', syncPlayIcon);
+
+        // Init icons from current state
+        syncPlayIcon();
+        syncSoundIcon();
+    }
 </script>
 
 </body>
