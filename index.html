@@ -35,28 +35,46 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --red:       #EF2D2D;
-            --deep-red:  #C62828;
-            --dark-red:  #9a1f1f;
-            --navy:      #1A2353;
-            --navy-dark: #0d1433;
-            --off-white: #FAF9F6;
-            --white:     #FFFFFF;
-            --text-muted: #5a6278;
-            --text-faint: #8a8fa8;
+            --ink:          #07080d;
+            --ink-mid:      #0d0f18;
+            --ink-raised:   #131523;
+            --ink-card:     #0f1120;
+            --gold:         #C4975A;
+            --gold-bright:  #DEB96A;
+            --gold-pale:    rgba(196,151,90,0.08);
+            --gold-line:    rgba(196,151,90,0.20);
+            --scarlet:      #C8382A;
+            --scarlet-dim:  #9e2b20;
+            --cream:        #EDE4D3;
+            --cream-soft:   #B0A090;
+            --cream-muted:  #6E6458;
+            --white:        #FFFFFF;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; font-size: 16px; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--navy);
-            background: var(--off-white);
+            font-family: 'Crimson Pro', Georgia, serif;
+            color: var(--cream);
+            background: var(--ink);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grain texture */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.030;
+            pointer-events: none;
+            z-index: 9998;
         }
 
         /* ─── NAVIGATION ─── */
@@ -64,57 +82,65 @@
             position: sticky;
             top: 0;
             z-index: 200;
-            background: var(--white);
-            border-bottom: 1px solid rgba(26,35,83,0.09);
+            background: rgba(7,8,13,0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gold-line);
             height: 68px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 3rem;
-            box-shadow: 0 1px 16px rgba(0,0,0,0.05);
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 11px;
+            gap: 12px;
             text-decoration: none;
         }
         .nav-wordmark {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            color: var(--navy);
-            line-height: 1.25;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.62rem;
+            letter-spacing: 0.24em;
+            color: var(--cream);
+            line-height: 1.45;
             text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2.2rem;
+            gap: 2.5rem;
         }
         .nav-links a {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--navy);
+            font-family: 'Cinzel', serif;
+            font-size: 0.62rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--cream-soft);
             text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: color 0.18s;
+            text-transform: uppercase;
+            transition: color 0.2s;
         }
-        .nav-links a:hover { color: var(--red); }
+        .nav-links a:hover { color: var(--gold); }
 
         .btn-nav {
-            background: var(--red);
-            color: var(--white) !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 4px;
-            font-weight: 600 !important;
-            letter-spacing: 0.03em !important;
-            transition: background 0.18s !important;
+            background: transparent !important;
+            color: var(--gold) !important;
+            border: 1px solid var(--gold-line) !important;
+            padding: 0.52rem 1.3rem !important;
+            border-radius: 2px !important;
+            font-size: 0.6rem !important;
+            letter-spacing: 0.2em !important;
+            transition: background 0.2s, border-color 0.2s, color 0.2s !important;
         }
-        .btn-nav:hover { background: var(--deep-red) !important; }
+        .btn-nav:hover {
+            background: var(--gold-pale) !important;
+            border-color: var(--gold) !important;
+            color: var(--gold-bright) !important;
+        }
 
         .hamburger {
             display: none;
@@ -128,21 +154,20 @@
         .hamburger span {
             display: block;
             width: 22px;
-            height: 2px;
-            background: var(--navy);
-            border-radius: 2px;
+            height: 1px;
+            background: var(--cream-soft);
             transition: all 0.25s;
         }
 
         /* ─── HERO ─── */
         .hero {
-            background: var(--navy);
-            min-height: 88vh;
+            background: var(--ink);
+            min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             position: relative;
             overflow: hidden;
-            padding: 6rem 2rem 7rem;
+            padding: 0 2rem 7rem;
         }
 
         .hero-video {
@@ -159,89 +184,93 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(
-                to bottom,
-                rgba(26,35,83,0.30) 0%,
-                rgba(26,35,83,0.50) 55%,
-                rgba(26,35,83,0.78) 100%
+                170deg,
+                rgba(7,8,13,0.10) 0%,
+                rgba(7,8,13,0.35) 38%,
+                rgba(7,8,13,0.78) 68%,
+                rgba(7,8,13,0.97) 100%
             );
             z-index: 1;
         }
 
-        /* Compass-rose SVG decorations */
-        .hero-decor {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
         .hero-content {
-            max-width: 860px;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
+            width: 100%;
             position: relative;
             z-index: 2;
         }
 
-        .hero-teachers {
-            font-size: 0.72rem;
+        .hero-eyebrow {
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
             font-weight: 600;
-            letter-spacing: 0.24em;
-            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.38em;
+            color: var(--gold);
             text-transform: uppercase;
-            margin-bottom: 1.6rem;
+            margin-bottom: 2rem;
             opacity: 0;
-            animation: fadeUp 0.7s 0.1s ease forwards;
+            animation: fadeUp 0.7s 0.2s ease forwards;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.8rem, 7.5vw, 6.2rem);
-            font-weight: 900;
-            color: var(--white);
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.4rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7.5vw, 7rem);
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.0;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.8rem;
             opacity: 0;
-            animation: fadeUp 0.8s 0.25s ease forwards;
+            animation: fadeUp 0.9s 0.35s ease forwards;
+            max-width: 800px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
         }
 
         .hero-sub {
-            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
             font-weight: 300;
-            color: rgba(255,255,255,0.82);
-            letter-spacing: 0.02em;
+            font-style: italic;
+            color: var(--cream-soft);
+            letter-spacing: 0.01em;
             margin-bottom: 3rem;
+            max-width: 480px;
+            line-height: 1.65;
             opacity: 0;
-            animation: fadeUp 0.8s 0.4s ease forwards;
+            animation: fadeUp 0.8s 0.5s ease forwards;
         }
 
         .hero-pills {
             display: flex;
-            gap: 0.85rem;
-            justify-content: center;
+            gap: 0.7rem;
             flex-wrap: wrap;
             opacity: 0;
-            animation: fadeUp 0.8s 0.55s ease forwards;
+            animation: fadeUp 0.8s 0.65s ease forwards;
         }
 
         .hero-pill {
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.25);
-            color: var(--white);
-            padding: 0.65rem 1.5rem;
-            border-radius: 100px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            backdrop-filter: blur(6px);
+            background: transparent;
+            border: 1px solid var(--gold-line);
+            color: var(--cream-soft);
+            padding: 0.7rem 1.6rem;
+            border-radius: 2px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.58rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             text-decoration: none;
-            cursor: pointer;
-            transition: background 0.18s, border-color 0.18s;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
         }
         .hero-pill:hover {
-            background: rgba(255,255,255,0.22);
-            border-color: rgba(255,255,255,0.45);
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-pale);
         }
 
         .hero-scroll-hint {
@@ -250,98 +279,139 @@
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
-            animation: fadeUp 0.8s 0.9s ease forwards;
+            animation: fadeUp 0.8s 1.0s ease forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
         .hero-scroll-hint span {
             display: block;
             width: 1px;
-            height: 48px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
-            margin: 0 auto;
+            height: 52px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
         }
 
-        /* ─── SECTION SHARED ─── */
+        /* ─── SECTION RULE ─── */
+        .section-rule {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-line), transparent);
+            margin: 0;
+        }
+
+        /* ─── SHARED SECTION STYLES ─── */
         .section {
-            padding: 7.5rem 2rem;
+            padding: 8rem 2rem;
         }
         .section-inner {
             max-width: 1100px;
             margin: 0 auto;
         }
+
         .section-label {
             display: block;
-            font-size: 0.7rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.56rem;
             font-weight: 700;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.34em;
             text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 0.9rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
         }
+
         .section-h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1.15;
-            margin-bottom: 0.75rem;
-        }
-        .section-sub {
-            font-size: 1.1rem;
-            color: var(--text-muted);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4.5vw, 3.6rem);
             font-weight: 400;
-            margin-bottom: 1.25rem;
-            line-height: 1.65;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section-sub {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            color: var(--cream-soft);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.78;
         }
 
         /* ─── BUTTONS ─── */
         .btn {
             display: inline-block;
-            padding: 0.85rem 1.75rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.92rem;
+            padding: 0.88rem 2rem;
+            border-radius: 2px;
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: 0.62rem;
             text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: all 0.18s;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.2s;
             cursor: pointer;
         }
-        .btn-red {
-            background: var(--red);
-            color: var(--white);
-            border: 2px solid var(--red);
+        .btn-gold {
+            background: var(--gold);
+            color: var(--ink);
+            border: 1px solid var(--gold);
         }
-        .btn-red:hover { background: var(--deep-red); border-color: var(--deep-red); }
+        .btn-gold:hover { background: var(--gold-bright); border-color: var(--gold-bright); }
+
+        .btn-red {
+            background: var(--scarlet);
+            color: var(--white);
+            border: 1px solid var(--scarlet);
+        }
+        .btn-red:hover { background: var(--scarlet-dim); border-color: var(--scarlet-dim); }
 
         .btn-outline-navy {
             background: transparent;
-            color: var(--navy);
-            border: 2px solid var(--navy);
+            color: var(--cream-soft);
+            border: 1px solid var(--gold-line);
         }
-        .btn-outline-navy:hover { background: var(--navy); color: var(--white); }
+        .btn-outline-navy:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: var(--gold-pale);
+        }
 
         .btn-group {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 2.2rem;
         }
 
         /* ─── PODCAST SECTION ─── */
-        .podcast-section { background: var(--white); }
+        .podcast-section { background: var(--ink-mid); }
 
         .podcast-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 7rem;
             align-items: start;
         }
 
         .podcast-body {
-            font-size: 1.05rem;
-            line-height: 1.78;
-            color: var(--text-muted);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.12rem;
+            line-height: 1.82;
+            color: var(--cream-soft);
             margin-bottom: 0.5rem;
+        }
+
+        .podcast-highlight {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.4;
+            border-left: 2px solid var(--gold);
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            margin: 2rem 0;
         }
 
         /* Platform badges */
@@ -350,244 +420,335 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 1.75rem;
+            margin-top: 2rem;
         }
         .platform-label {
-            font-size: 0.72rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.52rem;
             font-weight: 600;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--text-faint);
+            color: var(--cream-muted);
             margin-right: 0.25rem;
         }
         .platform-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--navy);
-            background: rgba(26,35,83,0.05);
-            border: 1px solid rgba(26,35,83,0.09);
-            border-radius: 100px;
-            padding: 0.3rem 0.75rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.56rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cream-soft);
+            background: var(--ink-raised);
+            border: 1px solid var(--gold-line);
+            border-radius: 2px;
+            padding: 0.35rem 0.8rem;
             text-decoration: none;
-            transition: background 0.15s, border-color 0.15s;
+            transition: border-color 0.18s, color 0.18s;
         }
         .platform-badge:hover {
-            background: rgba(26,35,83,0.1);
-            border-color: rgba(26,35,83,0.18);
+            border-color: var(--gold);
+            color: var(--gold);
         }
 
-        /* Buzzsprout embed wrapper */
         .buzzsprout-embed {
-            border-radius: 12px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--gold-line);
+            background: var(--ink-raised);
+        }
+
+        /* ─── TEACHERS SECTION ─── */
+        .teachers-section {
+            background: var(--ink);
+            padding: 7rem 2rem;
+            position: relative;
             overflow: hidden;
         }
+        .teachers-section::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px; height: 1000px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-line);
+            pointer-events: none;
+            opacity: 0.35;
+        }
+        .teachers-section::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 580px; height: 580px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-line);
+            pointer-events: none;
+            opacity: 0.2;
+        }
 
-        /* ─── DIVIDER ─── */
-        .divider {
+        .teachers-inner {
             max-width: 1100px;
             margin: 0 auto;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(26,35,83,0.1), transparent);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .teachers-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 4rem;
+        }
+
+        .teachers-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .teacher-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2.8rem 1.8rem 2.2rem;
+            background: var(--ink-card);
+            border: 1px solid var(--gold-line);
+            border-radius: 2px;
+            position: relative;
+            transition: border-color 0.25s, transform 0.3s;
+        }
+        .teacher-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 50%;
+            transform: translateX(-50%);
+            width: 48px; height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        .teacher-card:hover {
+            border-color: rgba(196,151,90,0.45);
+            transform: translateY(-5px);
+        }
+        .teacher-card:hover::before { width: 80px; }
+
+        .teacher-portrait {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 1px solid var(--gold-line);
+            filter: grayscale(0.25) contrast(1.05);
+        }
+
+        .teacher-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--cream);
+        }
+
+        .teacher-role {
+            font-family: 'Cinzel', serif;
+            font-size: 0.52rem;
+            color: var(--gold);
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            margin-top: -0.3rem;
+        }
+
+        .teacher-desc {
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.98rem;
+            font-style: italic;
+            color: var(--cream-muted);
+            line-height: 1.65;
+            text-align: center;
+            margin-top: 0.5rem;
         }
 
         /* ─── BOOK SECTION ─── */
-        .book-section { background: var(--off-white); }
+        .book-section { background: var(--ink-mid); }
 
         .book-grid {
             display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 6rem;
+            grid-template-columns: 320px 1fr;
+            gap: 8rem;
             align-items: center;
         }
 
-        /* Book cover image */
         .book-mockup {
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 900px;
+            perspective: 1000px;
         }
         .book-cover-img {
-            width: 230px;
+            width: 260px;
             display: block;
-            border-radius: 2px 5px 5px 2px;
-            transform: rotateY(-14deg);
+            border-radius: 2px 6px 6px 2px;
+            transform: rotateY(-14deg) rotateX(2deg);
             box-shadow:
-                -8px 0 16px rgba(0,0,0,0.25),
-                -18px 14px 50px rgba(0,0,0,0.3),
-                4px 0 8px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+                -12px 0 24px rgba(0,0,0,0.6),
+                -24px 20px 60px rgba(0,0,0,0.55),
+                0 0 80px rgba(196,151,90,0.07);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
         .book-mockup:hover .book-cover-img {
-            transform: rotateY(-6deg);
+            transform: rotateY(-5deg) rotateX(1deg);
             box-shadow:
-                -4px 0 10px rgba(0,0,0,0.2),
-                -22px 18px 60px rgba(0,0,0,0.28),
-                4px 0 8px rgba(0,0,0,0.1);
+                -6px 0 16px rgba(0,0,0,0.5),
+                -28px 24px 72px rgba(0,0,0,0.5),
+                0 0 100px rgba(196,151,90,0.12);
         }
 
         .pull-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.45rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.9rem, 3.5vw, 2.9rem);
             font-style: italic;
-            color: var(--navy);
-            border-left: 3px solid var(--red);
-            padding: 0.25rem 0 0.25rem 1.5rem;
-            margin: 1.75rem 0;
-            line-height: 1.5;
+            font-weight: 300;
+            color: var(--cream);
+            line-height: 1.25;
+            margin: 2.5rem 0;
+            position: relative;
+            padding-left: 0.5rem;
         }
+        .pull-quote::before {
+            content: '\201C';
+            display: block;
+            font-size: 7rem;
+            color: var(--gold);
+            opacity: 0.25;
+            line-height: 0.7;
+            margin-bottom: 0.5rem;
+            font-style: normal;
+        }
+
         .author-byline {
-            font-size: 0.95rem;
-            color: var(--text-faint);
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            color: var(--cream-muted);
             font-style: italic;
             margin-bottom: 0.25rem;
         }
+
         .lessons-note {
-            font-size: 0.8rem;
-            color: var(--text-faint);
-            margin-top: 1rem;
-            line-height: 1.5;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.18em;
+            color: var(--cream-muted);
+            margin-top: 1.5rem;
+            text-transform: uppercase;
         }
 
-        /* ─── TEACHERS STRIP ─── */
-        .teachers-strip {
-            background: var(--navy);
-            padding: 3.5rem 2rem;
-            text-align: center;
+        /* ─── ABOUT SECTION ─── */
+        .about-section { background: var(--ink); }
+
+        /* ─── FAQ SECTION ─── */
+        .faq-section { background: var(--ink-mid); }
+
+        .faq-list { margin-top: 3rem; }
+
+        .faq-item {
+            border-top: 1px solid var(--gold-line);
+            padding: 2.2rem 0;
         }
-        .teachers-strip-label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 1.5rem;
-            display: block;
+        .faq-item:last-child { border-bottom: 1px solid var(--gold-line); }
+
+        .faq-q {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--cream);
+            margin-bottom: 0.85rem;
         }
-        .teachers-row {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-        }
-        .teacher-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .teacher-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: white;
-        }
-        .teacher-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.9);
-        }
-        .teacher-role {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+        .faq-a {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.08rem;
+            line-height: 1.8;
+            color: var(--cream-soft);
         }
 
         /* ─── NEWSLETTER SECTION ─── */
         .newsletter-section {
-            background: var(--red);
-            padding: 7.5rem 2rem;
+            background: var(--ink);
+            padding: 8rem 2rem;
             position: relative;
             overflow: hidden;
         }
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -160px; left: 50%;
+            transform: translateX(-50%);
+            width: 900px; height: 900px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196,151,90,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .newsletter-section::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; height: 700px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-line);
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
         .newsletter-inner {
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
             position: relative;
             z-index: 2;
         }
-        .newsletter-section .section-label {
-            color: rgba(255,255,255,0.5);
-        }
-        .newsletter-section .section-h2 {
-            color: var(--white);
-            font-size: clamp(2.2rem, 5vw, 3rem);
-        }
+
+        .newsletter-section .section-h2 { color: var(--cream); }
+        .newsletter-section .section-label { color: var(--gold); }
+
         .newsletter-desc {
-            color: rgba(255,255,255,0.82);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--cream-soft);
+            margin-bottom: 3rem;
+            line-height: 1.7;
         }
 
-        .email-form {
-            display: flex;
-            max-width: 460px;
-            margin: 0 auto 1rem;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
-        }
-        .email-input {
-            flex: 1;
-            padding: 1rem 1.2rem;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.92rem;
-            outline: none;
-            color: var(--navy);
-            min-width: 0;
-        }
-        .email-submit {
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            padding: 1rem 1.4rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.88rem;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.18s;
-            letter-spacing: 0.03em;
-        }
-        .email-submit:hover { background: var(--navy-dark); }
-        .newsletter-note {
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.45);
-            margin-top: 1rem;
-        }
         .substack-embed-wrap {
             display: flex;
             justify-content: center;
             margin: 0 auto;
+            border: 1px solid var(--gold-line);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
-        /* Background rings for newsletter */
-        .nl-rings {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .newsletter-note {
+            font-family: 'Cinzel', serif;
+            font-size: 0.54rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--cream-muted);
+            margin-top: 1.5rem;
         }
 
         /* ─── FOOTER ─── */
         footer {
-            background: var(--navy-dark);
+            background: var(--ink-mid);
+            border-top: 1px solid var(--gold-line);
             padding: 5rem 2rem 2.5rem;
         }
         .footer-grid {
@@ -598,60 +759,62 @@
             margin: 0 auto 3.5rem;
         }
         .footer-brand-tagline {
-            font-size: 0.87rem;
-            color: rgba(255,255,255,0.4);
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--cream-muted);
             margin-top: 0.75rem;
             line-height: 1.65;
         }
         .footer-col-head {
-            font-size: 0.65rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.54rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.26em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
-            margin-bottom: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
         }
         .footer-col a {
             display: block;
-            color: rgba(255,255,255,0.6);
+            font-family: 'Crimson Pro', serif;
+            color: var(--cream-muted);
             text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             margin-bottom: 0.65rem;
             transition: color 0.18s;
             line-height: 1.4;
         }
-        .footer-col a:hover { color: var(--white); }
-        .footer-col a.dim { opacity: 0.35; cursor: default; pointer-events: none; }
+        .footer-col a:hover { color: var(--cream); }
+        .footer-col a.dim { opacity: 0.3; cursor: default; pointer-events: none; }
 
         .footer-bottom {
             max-width: 1100px;
             margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid var(--gold-line);
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
         }
         .footer-copy {
-            font-size: 0.77rem;
-            color: rgba(255,255,255,0.25);
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.85rem;
+            color: var(--cream-muted);
         }
         .footer-teachers {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 0.1em;
+            font-family: 'Cinzel', serif;
+            font-size: 0.52rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--cream-muted);
         }
 
         /* ─── ANIMATIONS ─── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(28px); }
+            from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse-ring {
-            0%   { transform: scale(0.95); opacity: 0.06; }
-            50%  { transform: scale(1.02); opacity: 0.1; }
-            100% { transform: scale(0.95); opacity: 0.06; }
         }
 
         /* ─── RESPONSIVE ─── */
@@ -661,31 +824,24 @@
             .nav-links.open {
                 display: flex;
                 position: fixed;
-                top: 68px;
-                left: 0;
-                right: 0;
+                top: 68px; left: 0; right: 0;
                 flex-direction: column;
-                background: var(--white);
+                background: var(--ink-mid);
                 padding: 1.5rem 2rem;
                 gap: 1.25rem;
-                border-bottom: 1px solid rgba(26,35,83,0.09);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+                border-bottom: 1px solid var(--gold-line);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.4);
             }
             .hamburger { display: flex; }
 
-            .podcast-grid,
-            .book-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .book-cover-img { transform: rotateY(0); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+            .podcast-grid { grid-template-columns: 1fr; gap: 3rem; }
 
-            .teachers-row { gap: 2.5rem; }
+            .teachers-row { grid-template-columns: 1fr; max-width: 380px; }
 
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
+            .book-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .book-cover-img { transform: rotateY(0); box-shadow: 0 12px 40px rgba(0,0,0,0.5); width: 220px; margin: 0 auto; display: block; }
+
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
 
@@ -693,9 +849,7 @@
             .section { padding: 5rem 1.5rem; }
             nav { padding: 0 1.25rem; }
             .footer-grid { grid-template-columns: 1fr; }
-            .email-form { flex-direction: column; border-radius: 6px; }
-            .email-input { border-radius: 6px 6px 0 0; }
-            .email-submit { border-radius: 0 0 6px 6px; }
+            .hero { padding: 0 1.5rem 6rem; }
         }
     </style>
 
@@ -847,13 +1001,12 @@
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav>
     <a href="#" class="nav-logo">
-        <!-- Stylized S mark -->
-        <svg width="34" height="42" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <ellipse cx="21" cy="12" rx="13" ry="8" fill="#C62828" transform="rotate(-22 21 12)"/>
-            <ellipse cx="13" cy="30" rx="13" ry="8" fill="#EF5350" transform="rotate(-22 13 30)"/>
-            <ellipse cx="17" cy="21" rx="8" ry="5.5" fill="#C62828" transform="rotate(-22 17 21)"/>
+        <svg width="30" height="38" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <ellipse cx="21" cy="12" rx="13" ry="8" fill="#C4975A" transform="rotate(-22 21 12)" opacity="0.9"/>
+            <ellipse cx="13" cy="30" rx="13" ry="8" fill="#C4975A" transform="rotate(-22 13 30)" opacity="0.55"/>
+            <ellipse cx="17" cy="21" rx="8" ry="5.5" fill="#C4975A" transform="rotate(-22 17 21)" opacity="0.75"/>
         </svg>
-        <div class="nav-wordmark">THE HEROIC<br>STOIC</div>
+        <div class="nav-wordmark">The Heroic<br>Stoic</div>
     </a>
 
     <div class="nav-links" id="navLinks">
@@ -877,64 +1030,40 @@
     </video>
     <div class="hero-overlay" aria-hidden="true"></div>
 
-    <!-- Compass-rose decoration -->
-    <div class="hero-decor" aria-hidden="true">
-        <svg style="position:absolute;top:-60px;right:-80px;opacity:0.07" width="640" height="640" viewBox="0 0 640 640">
-            <circle cx="320" cy="320" r="310" stroke="white" stroke-width="0.8" fill="none"/>
-            <circle cx="320" cy="320" r="240" stroke="white" stroke-width="0.8" fill="none"/>
-            <circle cx="320" cy="320" r="170" stroke="white" stroke-width="0.8" fill="none"/>
-            <circle cx="320" cy="320" r="100" stroke="white" stroke-width="0.8" fill="none"/>
-            <line x1="320" y1="10" x2="320" y2="630" stroke="white" stroke-width="0.5"/>
-            <line x1="10" y1="320" x2="630" y2="320" stroke="white" stroke-width="0.5"/>
-            <line x1="103" y1="103" x2="537" y2="537" stroke="white" stroke-width="0.4"/>
-            <line x1="537" y1="103" x2="103" y2="537" stroke="white" stroke-width="0.4"/>
-            <!-- Cardinal points -->
-            <polygon points="320,10 313,30 327,30" fill="white" opacity="0.5"/>
-            <polygon points="320,630 313,610 327,610" fill="white" opacity="0.5"/>
-            <polygon points="10,320 30,313 30,327" fill="white" opacity="0.5"/>
-            <polygon points="630,320 610,313 610,327" fill="white" opacity="0.5"/>
-        </svg>
-        <svg style="position:absolute;bottom:-140px;left:-100px;opacity:0.05" width="480" height="480" viewBox="0 0 480 480">
-            <circle cx="240" cy="240" r="230" stroke="white" stroke-width="0.8" fill="none"/>
-            <circle cx="240" cy="240" r="165" stroke="white" stroke-width="0.8" fill="none"/>
-        </svg>
-        <!-- Accent dots -->
-        <div style="position:absolute;top:18%;left:7%;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.18)"></div>
-        <div style="position:absolute;top:72%;left:14%;width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.12)"></div>
-        <div style="position:absolute;top:28%;right:12%;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.14)"></div>
-        <div style="position:absolute;top:60%;right:8%;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1)"></div>
-    </div>
-
     <div class="hero-content">
-        <p class="hero-teachers">Epictetus &nbsp;·&nbsp; Carl Jung &nbsp;·&nbsp; Laozi</p>
-        <h1>The Daily Practice<br>of Stoic Wisdom</h1>
+        <p class="hero-eyebrow">Epictetus &nbsp;·&nbsp; Carl Jung &nbsp;·&nbsp; Laozi</p>
+        <h1>The Daily Practice<br>of <em>Stoic Wisdom</em></h1>
         <p class="hero-sub">Ancient philosophy. Modern life. One practice at a time.</p>
         <div class="hero-pills">
-            <a href="#listen" class="hero-pill">🎙️ The Podcast</a>
-            <a href="#books" class="hero-pill">📖 The Book</a>
-            <a href="#newsletter" class="hero-pill">✉️ The Newsletter</a>
+            <a href="#listen" class="hero-pill">The Podcast</a>
+            <a href="#books" class="hero-pill">The Book</a>
+            <a href="#newsletter" class="hero-pill">The Newsletter</a>
         </div>
     </div>
 
     <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
 </section>
 
+<div class="section-rule"></div>
+
 
 <!-- ═══════════ PODCAST SECTION ═══════════ -->
 <section id="listen" class="section podcast-section">
     <div class="section-inner">
         <div class="podcast-grid">
-            <!-- Text -->
             <div>
                 <span class="section-label">The Podcast</span>
                 <h2 class="section-h2">What is The Stoic Compass podcast?</h2>
                 <p class="section-sub">The Stoic Compass is a philosophy podcast where Epictetus, Carl Jung, and Laozi debate a Stoic principle each episode. They disagree — genuinely, sometimes sharply. Every episode ends with one concrete practice you can do before tomorrow. Free on all major platforms.</p>
+
+                <blockquote class="podcast-highlight">
+                    Three minds. One question. One practice. Something you actually do today.
+                </blockquote>
+
                 <p class="podcast-body">
-                    Three of history's greatest minds. One question. One practice. Epictetus pushes hard. Jung digs deep. Laozi asks what happens if you stop pushing entirely. One of them delivers a lesson. All of them leave you with something to actually do today.
+                    Epictetus pushes hard. Jung digs deep. Laozi asks what happens if you stop pushing entirely. One of them delivers a lesson. All of them leave you with something to actually do today.
                 </p>
-                <p class="podcast-body" style="margin-top:0.75rem">
-                    Not a concept to think about. Something you actually do today.
-                </p>
+
                 <div class="btn-group">
                     <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener" class="btn btn-red">Listen on Buzzsprout</a>
                     <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener" class="btn btn-outline-navy">Subscribe Free</a>
@@ -948,7 +1077,6 @@
                 </div>
             </div>
 
-            <!-- Buzzsprout Large Player -->
             <div class="buzzsprout-embed">
                 <div id='buzzsprout-large-player'></div>
                 <script defer type='text/javascript' charset='utf-8' src='https://www.buzzsprout.com/2526323.js?container_id=buzzsprout-large-player&player=large'></script>
@@ -957,48 +1085,57 @@
     </div>
 </section>
 
+<div class="section-rule"></div>
 
-<!-- ═══════════ TEACHERS STRIP ═══════════ -->
-<div class="teachers-strip">
-    <span class="teachers-strip-label">The Three Teachers</span>
-    <div class="teachers-row">
-        <div class="teacher-item">
-            <img src="assets/portraits/epictetus.png" alt="Epictetus — Stoic philosopher" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;" loading="lazy">
-            <div class="teacher-name">Epictetus</div>
-            <div class="teacher-role">The Drill Sergeant</div>
-        </div>
-        <div class="teacher-item">
-            <img src="assets/portraits/carlJung.png" alt="Carl Jung — Swiss psychiatrist and mythologist" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;" loading="lazy">
-            <div class="teacher-name">Carl Jung</div>
-            <div class="teacher-role">The Mythologist</div>
-        </div>
-        <div class="teacher-item">
-            <img src="assets/portraits/laozi.png" alt="Laozi — ancient Chinese philosopher, author of the Tao Te Ching" class="teacher-circle" style="object-fit:cover;width:56px;height:56px;" loading="lazy">
-            <div class="teacher-name">Laozi</div>
-            <div class="teacher-role">The Riddler</div>
+
+<!-- ═══════════ TEACHERS SECTION ═══════════ -->
+<div class="teachers-section">
+    <div class="teachers-inner">
+        <span class="section-label">The Three Teachers</span>
+        <p class="teachers-heading">Three of history's sharpest minds.<br>One Stoic principle per episode. They genuinely disagree.</p>
+
+        <div class="teachers-row">
+            <div class="teacher-card">
+                <img src="assets/portraits/epictetus.png" alt="Epictetus — Stoic philosopher" class="teacher-portrait" loading="lazy">
+                <div class="teacher-name">Epictetus</div>
+                <div class="teacher-role">The Drill Sergeant</div>
+                <p class="teacher-desc">Born a slave. Became one of history's most uncompromising thinkers. He pushes hard. He doesn't let you off the hook.</p>
+            </div>
+            <div class="teacher-card">
+                <img src="assets/portraits/carlJung.png" alt="Carl Jung — Swiss psychiatrist and mythologist" class="teacher-portrait" loading="lazy">
+                <div class="teacher-name">Carl Jung</div>
+                <div class="teacher-role">The Mythologist</div>
+                <p class="teacher-desc">He mapped the unconscious. He digs where others won't look. He asks what the shadow is trying to tell you.</p>
+            </div>
+            <div class="teacher-card">
+                <img src="assets/portraits/laozi.png" alt="Laozi — ancient Chinese philosopher, author of the Tao Te Ching" class="teacher-portrait" loading="lazy">
+                <div class="teacher-name">Laozi</div>
+                <div class="teacher-role">The Riddler</div>
+                <p class="teacher-desc">Author of the Tao Te Ching. He answers questions with questions. He rarely explains. He doesn't have to.</p>
+            </div>
         </div>
     </div>
 </div>
+
+<div class="section-rule"></div>
 
 
 <!-- ═══════════ BOOK SECTION ═══════════ -->
 <section id="books" class="section book-section">
     <div class="section-inner">
         <div class="book-grid">
-            <!-- Book Cover Image -->
             <div class="book-mockup">
                 <img src="payAttentionCover.png"
                      alt="Pay Attention by C. Trebue — The Practice of Seeing Clearly"
                      class="book-cover-img">
             </div>
 
-            <!-- Book Text -->
             <div>
                 <span class="section-label">The Book</span>
                 <h2 class="section-h2">What is <em>Pay Attention</em> by C. Trebue?</h2>
                 <p class="author-byline">by C. Trebue</p>
                 <p class="section-sub">
-                    <em>Pay Attention</em> is twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today. Available on Amazon as an eBook and paperback.
+                    Twelve lessons in the practice of seeing clearly. Epictetus, Carl Jung, and Laozi teach you to stop reacting and start noticing. Each lesson ends with one concrete practice you can do today. Available on Amazon as an eBook and paperback.
                 </p>
                 <blockquote class="pull-quote">
                     "You're not distracted.<br>You're just not here."
@@ -1013,9 +1150,11 @@
     </div>
 </section>
 
+<div class="section-rule"></div>
+
 
 <!-- ═══════════ ABOUT THE AUTHOR ═══════════ -->
-<section id="about" class="section" style="background:var(--white);">
+<section id="about" class="section about-section">
     <div class="section-inner" style="max-width:720px;">
         <span class="section-label">The Author</span>
         <h2 class="section-h2" style="margin-bottom:1.5rem;">Who is C. Trebue?</h2>
@@ -1031,57 +1170,49 @@
     </div>
 </section>
 
-<div class="divider"></div>
+<div class="section-rule"></div>
+
 
 <!-- ═══════════ FAQ SECTION ═══════════ -->
-<section id="faq" class="section" style="background:var(--off-white);">
+<section id="faq" class="section faq-section">
     <div class="section-inner" style="max-width:720px;">
         <span class="section-label">Common Questions</span>
-        <h2 class="section-h2" style="margin-bottom:2.5rem;">Frequently Asked Questions</h2>
+        <h2 class="section-h2">Frequently Asked Questions</h2>
 
-        <div style="display:flex;flex-direction:column;gap:2rem;">
-
-            <div>
-                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">What is The Heroic Stoic?</h3>
-                <p class="podcast-body">The Heroic Stoic is a brand built around the daily practice of Stoic wisdom. It brings together The Stoic Compass podcast, the book <em>Pay Attention</em> by C. Trebue, and The Daily Practice — a free daily newsletter delivering one Stoic insight and one concrete practice every day.</p>
+        <div class="faq-list">
+            <div class="faq-item">
+                <p class="faq-q">What is The Heroic Stoic?</p>
+                <p class="faq-a">The Heroic Stoic is a brand built around the daily practice of Stoic wisdom. It brings together The Stoic Compass podcast, the book <em>Pay Attention</em> by C. Trebue, and The Daily Practice — a free daily newsletter delivering one Stoic insight and one concrete practice every day.</p>
             </div>
 
-            <div>
-                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Who are the three teachers on The Stoic Compass?</h3>
-                <p class="podcast-body">The three teachers are Epictetus (the Stoic philosopher, known here as The Drill Sergeant), Carl Jung (the Swiss psychiatrist and mythologist), and Laozi (the ancient Chinese philosopher and author of the Tao Te Ching, known as The Riddler). Each brings a sharply different perspective to every Stoic principle — and they genuinely disagree.</p>
+            <div class="faq-item">
+                <p class="faq-q">Who are the three teachers on The Stoic Compass?</p>
+                <p class="faq-a">The three teachers are Epictetus (the Stoic philosopher, known here as The Drill Sergeant), Carl Jung (the Swiss psychiatrist and mythologist), and Laozi (the ancient Chinese philosopher and author of the Tao Te Ching, known as The Riddler). Each brings a sharply different perspective to every Stoic principle — and they genuinely disagree.</p>
             </div>
 
-            <div>
-                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Do I need a background in philosophy to benefit from this?</h3>
-                <p class="podcast-body">No. The Stoic Compass podcast, the book, and the newsletter are all built for people who want practical tools — not academic theory. Each episode and each lesson ends with one concrete thing you can do today. No philosophy degree required. No meditation cushion either.</p>
+            <div class="faq-item">
+                <p class="faq-q">Do I need a background in philosophy to benefit from this?</p>
+                <p class="faq-a">No. The Stoic Compass podcast, the book, and the newsletter are all built for people who want practical tools — not academic theory. Each episode and each lesson ends with one concrete thing you can do today. No philosophy degree required. No meditation cushion either.</p>
             </div>
 
-            <div>
-                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">Is the podcast free?</h3>
-                <p class="podcast-body">Yes. The Stoic Compass is completely free to listen to on Buzzsprout, Apple Podcasts, Spotify, Amazon Music, and iHeart Radio. Subscribe on any platform to get new episodes automatically.</p>
+            <div class="faq-item">
+                <p class="faq-q">Is the podcast free?</p>
+                <p class="faq-a">Yes. The Stoic Compass is completely free to listen to on Buzzsprout, Apple Podcasts, Spotify, Amazon Music, and iHeart Radio. Subscribe on any platform to get new episodes automatically.</p>
             </div>
 
-            <div>
-                <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.6rem;">What is the difference between the podcast and the book?</h3>
-                <p class="podcast-body">The Stoic Compass podcast delivers a new debate and practice every episode — it is an ongoing, evolving series. <em>Pay Attention</em> is a complete twelve-lesson course designed to be read in sequence, building one practice on top of the last. Both feature the same three teachers, but the book goes deeper on the foundational skills of attention and self-awareness.</p>
+            <div class="faq-item">
+                <p class="faq-q">What is the difference between the podcast and the book?</p>
+                <p class="faq-a">The Stoic Compass podcast delivers a new debate and practice every episode — it is an ongoing, evolving series. <em>Pay Attention</em> is a complete twelve-lesson course designed to be read in sequence, building one practice on top of the last. Both feature the same three teachers, but the book goes deeper on the foundational skills of attention and self-awareness.</p>
             </div>
-
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
+<div class="section-rule"></div>
+
 
 <!-- ═══════════ NEWSLETTER SECTION ═══════════ -->
 <section id="newsletter" class="newsletter-section">
-    <!-- Background rings -->
-    <div class="nl-rings" aria-hidden="true">
-        <svg width="700" height="700" viewBox="0 0 700 700" style="opacity:0.06">
-            <circle cx="350" cy="350" r="340" stroke="white" stroke-width="1" fill="none"/>
-            <circle cx="350" cy="350" r="260" stroke="white" stroke-width="1" fill="none"/>
-            <circle cx="350" cy="350" r="180" stroke="white" stroke-width="1" fill="none"/>
-        </svg>
-    </div>
     <div class="newsletter-inner">
         <span class="section-label">The Newsletter</span>
         <h2 class="section-h2">What is The Daily Practice newsletter?</h2>
@@ -1090,7 +1221,7 @@
         <div class="substack-embed-wrap">
             <iframe src="https://thedailypractice33.substack.com/embed"
                     width="480" height="320"
-                    style="border:1px solid #EEE; background:white; border-radius:10px; display:block; max-width:100%;"
+                    style="border:none; background:white; display:block; max-width:100%;"
                     frameborder="0" scrolling="no" loading="lazy"></iframe>
         </div>
         <p class="newsletter-note">Free to subscribe &nbsp;·&nbsp; One practice, every day.</p>
@@ -1101,20 +1232,18 @@
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
     <div class="footer-grid">
-        <!-- Brand -->
         <div>
             <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none">
-                <svg width="28" height="36" viewBox="0 0 28 36" fill="none" aria-hidden="true">
-                    <ellipse cx="18" cy="10" rx="10" ry="6.5" fill="rgba(255,255,255,0.8)" transform="rotate(-22 18 10)"/>
-                    <ellipse cx="10" cy="26" rx="10" ry="6.5" fill="rgba(255,255,255,0.45)" transform="rotate(-22 10 26)"/>
-                    <ellipse cx="14" cy="18" rx="6.5" ry="4.5" fill="rgba(255,255,255,0.65)" transform="rotate(-22 14 18)"/>
+                <svg width="24" height="30" viewBox="0 0 34 42" fill="none" aria-hidden="true">
+                    <ellipse cx="21" cy="12" rx="13" ry="8" fill="rgba(196,151,90,0.8)" transform="rotate(-22 21 12)"/>
+                    <ellipse cx="13" cy="30" rx="13" ry="8" fill="rgba(196,151,90,0.4)" transform="rotate(-22 13 30)"/>
+                    <ellipse cx="17" cy="21" rx="8" ry="5.5" fill="rgba(196,151,90,0.6)" transform="rotate(-22 17 21)"/>
                 </svg>
-                <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.14em;color:rgba(255,255,255,0.8);line-height:1.3;text-transform:uppercase">THE HEROIC<br>STOIC</span>
+                <span style="font-family:'Cinzel',serif;font-weight:600;font-size:0.58rem;letter-spacing:0.22em;color:rgba(237,228,211,0.75);line-height:1.5;text-transform:uppercase">The Heroic<br>Stoic</span>
             </a>
             <p class="footer-brand-tagline">Ancient wisdom. Daily practice.</p>
         </div>
 
-        <!-- Listen -->
         <div class="footer-col">
             <div class="footer-col-head">Listen</div>
             <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener">The Stoic Compass</a>
@@ -1122,14 +1251,12 @@
             <a href="https://www.buzzsprout.com/2526323" target="_blank" rel="noopener">Subscribe Free</a>
         </div>
 
-        <!-- Read -->
         <div class="footer-col">
             <div class="footer-col-head">Read</div>
             <a href="https://www.amazon.com/dp/B0GR8WLMPC" target="_blank" rel="noopener">Pay Attention — eBook</a>
             <a href="https://www.amazon.com/dp/B0GVV46SWF" target="_blank" rel="noopener">Pay Attention — Paperback</a>
         </div>
 
-        <!-- Connect -->
         <div class="footer-col">
             <div class="footer-col-head">Connect</div>
             <a href="https://thedailypractice33.substack.com" target="_blank" rel="noopener">The Daily Practice (Substack)</a>
@@ -1146,7 +1273,6 @@
 </footer>
 
 <script>
-    // Close mobile nav on link click
     document.querySelectorAll('#navLinks a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('open');
