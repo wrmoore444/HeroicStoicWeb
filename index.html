@@ -136,13 +136,35 @@
 
         /* ─── HERO ─── */
         .hero {
-            background: var(--red);
+            background: var(--navy);
             min-height: 88vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             padding: 6rem 2rem 7rem;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26,35,83,0.30) 0%,
+                rgba(26,35,83,0.50) 55%,
+                rgba(26,35,83,0.78) 100%
+            );
+            z-index: 1;
         }
 
         /* Compass-rose SVG decorations */
@@ -850,6 +872,11 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="video/tsc_stoic_intro.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
     <!-- Compass-rose decoration -->
     <div class="hero-decor" aria-hidden="true">
         <svg style="position:absolute;top:-60px;right:-80px;opacity:0.07" width="640" height="640" viewBox="0 0 640 640">
